@@ -1,5 +1,11 @@
+var question = document.getElementById("question");
+var choiceA = document.getElementById("choiceA");
+var choiceB = document.getElementById("choiceB");
+var choiceC = document.getElementById("choiceC");
+var choiceD = document.getElementById("choiceD");
+
 // Array of questions and answer choices
-let questions = [
+let quizQuestions = [
     {
         question: "What CSS pseudo-class is needed to declare variables in CSS?",
         choiceA: "*",
@@ -42,7 +48,25 @@ let questions = [
     }
 ]
 
+console.log(quizQuestions[0]);
+console.log(quizQuestions[0].question);
+console.log(quizQuestions[1].choiceA);
+console.log(quizQuestions[2].choiceB);
+console.log(quizQuestions[3].choiceC);
+console.log(quizQuestions[4].choiceD);
+
+for(var i = 0; i < quizQuestions.length; i++){
+    question.textContent = quizQuestions[i].question;
+    choiceA.textContent = quizQuestions[i].choiceA;
+    choiceB.textContent = quizQuestions[i].choiceB;
+    choiceC.textContent = quizQuestions[i].choiceC;
+    choiceD.textContent = quizQuestions[i].choiceD;
+}
+
 // make navigate function that goes to next question once current one is answered
+function navigate(){
+    index++;
+}
 
 // need  to localstorage the score and name of user
 
