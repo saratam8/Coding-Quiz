@@ -3,6 +3,22 @@ var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
 var choiceD = document.getElementById("choiceD");
+var startButton = document.getElementById("start");
+var timer = document.querySelector(".time");
+var seconds = 60;
+var userChoice = [];
+
+function startTimer(){
+    var timerInterval = setInterval(function(){
+        seconds--;
+        timer.textContent = "Seconds left: " + seconds;
+
+        if(seconds === 0){
+            clearInterval(timerInterval);
+        }
+
+    }, 1000);
+}
 
 // Array of questions and answer choices
 let quizQuestions = [
@@ -50,16 +66,22 @@ let quizQuestions = [
 
 var i = 0;
 
-function printQuiz(){
-question.textContent = quizQuestions[i].question;
-choiceA.textContent = quizQuestions[i].choiceA;
-choiceB.textContent = quizQuestions[i].choiceB;
-choiceC.textContent = quizQuestions[i].choiceC;
-choiceD.textContent = quizQuestions[i].choiceD;
-}
 
-printQuiz();
+function startQuiz(){
+    choiceA.style.display = "block";
+    choiceB.style.display = "block";
+    choiceC.style.display = "block";
+    choiceD.style.display = "block";
 
+    function printQuiz(){
+        question.textContent = quizQuestions[i].question;
+        choiceA.textContent = quizQuestions[i].choiceA;
+        choiceB.textContent = quizQuestions[i].choiceB;
+        choiceC.textContent = quizQuestions[i].choiceC;
+        choiceD.textContent = quizQuestions[i].choiceD;
+    }
+
+    printQuiz();
 // console.log(quizQuestions[0]);
 // console.log(quizQuestions[i].question);
 // console.log(quizQuestions[i].choiceA);
@@ -67,25 +89,34 @@ printQuiz();
 // console.log(quizQuestions[i].choiceC);
 // console.log(quizQuestions[i].choiceD);
     
-choiceA.addEventListener("click", function(event){
-    i++;
-    printQuiz();
-});
+    choiceA.addEventListener("click", function(event){
+        i++;
+        printQuiz();
+    });
 
-choiceB.addEventListener("click", function(event){
-    i++;
-    printQuiz();
-});
+    choiceB.addEventListener("click", function(event){
+        i++;
+        printQuiz();
+    });
 
-choiceC.addEventListener("click", function(event){
-    i++;
-    printQuiz();
-});
+    choiceC.addEventListener("click", function(event){
+        i++;
+        printQuiz();
+    });
 
-choiceD.addEventListener("click", function(event){
-    i++;
-    printQuiz();
-});
+    choiceD.addEventListener("click", function(event){
+        i++;
+        printQuiz();
+    });
+}
+
+startButton.addEventListener("click", function(event){
+    event.preventDefault();
+    startButton.style.display = "none";
+    startTimer();
+    startQuiz();
+    
+})
 
 // need  to localstorage the score and name of user
 
