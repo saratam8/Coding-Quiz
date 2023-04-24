@@ -46,27 +46,46 @@ let quizQuestions = [
         choiceD: "Title, Head, Body, HTML",
         correctChoice: "A" 
     }
-]
+];
 
-console.log(quizQuestions[0]);
-console.log(quizQuestions[0].question);
-console.log(quizQuestions[1].choiceA);
-console.log(quizQuestions[2].choiceB);
-console.log(quizQuestions[3].choiceC);
-console.log(quizQuestions[4].choiceD);
+var i = 0;
 
-for(var i = 0; i < quizQuestions.length; i++){
-    question.textContent = quizQuestions[i].question;
-    choiceA.textContent = quizQuestions[i].choiceA;
-    choiceB.textContent = quizQuestions[i].choiceB;
-    choiceC.textContent = quizQuestions[i].choiceC;
-    choiceD.textContent = quizQuestions[i].choiceD;
+function printQuiz(){
+question.textContent = quizQuestions[i].question;
+choiceA.textContent = quizQuestions[i].choiceA;
+choiceB.textContent = quizQuestions[i].choiceB;
+choiceC.textContent = quizQuestions[i].choiceC;
+choiceD.textContent = quizQuestions[i].choiceD;
 }
 
-// make navigate function that goes to next question once current one is answered
-function navigate(){
-    index++;
-}
+printQuiz();
+
+// console.log(quizQuestions[0]);
+// console.log(quizQuestions[i].question);
+// console.log(quizQuestions[i].choiceA);
+// console.log(quizQuestions[i].choiceB);
+// console.log(quizQuestions[i].choiceC);
+// console.log(quizQuestions[i].choiceD);
+    
+choiceA.addEventListener("click", function(event){
+    i++;
+    printQuiz();
+});
+
+choiceB.addEventListener("click", function(event){
+    i++;
+    printQuiz();
+});
+
+choiceC.addEventListener("click", function(event){
+    i++;
+    printQuiz();
+});
+
+choiceD.addEventListener("click", function(event){
+    i++;
+    printQuiz();
+});
 
 // need  to localstorage the score and name of user
 
