@@ -4,6 +4,11 @@ var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
 var choiceD = document.getElementById("choiceD");
 var startButton = document.getElementById("start");
+var scoreBoard = document.getElementById("enterScores");
+var quizEl = document.getElementById("quiz");
+// var wrongAnswerEl = document.createTextNode("Wrong Answer!");
+// var correctAnswerEl = document.createTextNode("Correct Answer!");
+var correctEl = document.createElement("p");
 var timer = document.querySelector(".time");
 var seconds = 60;
 var i = 0;
@@ -24,6 +29,7 @@ function startTimer(){
             choiceB.style.display = "none";
             choiceC.style.display = "none";
             choiceD.style.display = "none";
+            scoreBoard.style.display = "block";
         }
 
     }, 1000);
@@ -85,6 +91,20 @@ function printQuiz(){
     choiceD.textContent = quizQuestions[i].choiceD;
 }
 
+function finishCheck(){
+    if(i >= quizQuestions.length){
+        timer.style.display = "none";
+        question.textContent = "Quiz Complete!";
+        choiceA.style.display = "none";
+        choiceB.style.display = "none";
+        choiceC.style.display = "none";
+        choiceD.style.display = "none";
+        scoreBoard.style.display = "block";
+        return true;
+    }
+    return false;
+}
+
 // console.log(quizQuestions[0]);
 // console.log(quizQuestions[i].question);
 // console.log(quizQuestions[i].choiceA);
@@ -96,16 +116,17 @@ choiceA.addEventListener("click", function(event){
     userAnswers[i] = "A";
     if(userAnswers[i] != correctChoices[i]){
         seconds = seconds - 10;
+        correctEl.textContent = "Wrong Answer!";
+        quizEl.appendChild(correctEl);
+
+    }
+    else{
+        correctEl.textContent = "Correct Answer!";
+        quizEl.appendChild(correctEl);
     }
     console.log(userAnswers);
     i++;
-    if(i >= quizQuestions.length){
-        timer.style.display = "none";
-        question.textContent = "Quiz Complete!";
-        choiceA.style.display = "none";
-        choiceB.style.display = "none";
-        choiceC.style.display = "none";
-        choiceD.style.display = "none";
+    if (finishCheck()){
         return;
     }
     printQuiz();
@@ -115,16 +136,16 @@ choiceB.addEventListener("click", function(event){
     userAnswers[i] = "B";
     if(userAnswers[i] != correctChoices[i]){
         seconds = seconds - 10;
+        correctEl.textContent = "Wrong Answer!";
+        quizEl.appendChild(correctEl);
+    }
+    else{
+        correctEl.textContent = "Correct Answer!";
+        quizEl.appendChild(correctEl);
     }
     console.log(userAnswers);
     i++;
-    if(i >= quizQuestions.length){
-        timer.style.display = "none";
-        question.textContent = "Quiz Complete!";
-        choiceA.style.display = "none";
-        choiceB.style.display = "none";
-        choiceC.style.display = "none";
-        choiceD.style.display = "none";
+    if (finishCheck()){
         return;
     }
     printQuiz();
@@ -134,16 +155,16 @@ choiceC.addEventListener("click", function(event){
     userAnswers[i] = "C";
     if(userAnswers[i] != correctChoices[i]){
         seconds = seconds - 10;
+        correctEl.textContent = "Wrong Answer!";
+        quizEl.appendChild(correctEl);
+    }
+    else{
+        correctEl.textContent = "Correct Answer!";
+        quizEl.appendChild(correctEl);
     }
     console.log(userAnswers);
     i++;
-    if(i >= quizQuestions.length){
-        timer.style.display = "none";
-        question.textContent = "Quiz Complete!";
-        choiceA.style.display = "none";
-        choiceB.style.display = "none";
-        choiceC.style.display = "none";
-        choiceD.style.display = "none";
+    if (finishCheck()){
         return;
     }
     printQuiz();
@@ -153,28 +174,20 @@ choiceD.addEventListener("click", function(event){
     userAnswers[i] = "D";
     if(userAnswers[i] != correctChoices[i]){
         seconds = seconds - 10;
+        correctEl.textContent = "Wrong Answer!";
+        quizEl.appendChild(correctEl);
+    }
+    else{
+        correctEl.textContent = "Correct Answer!";
+        quizEl.appendChild(correctEl);
     }
     console.log(userAnswers);
     i++;
-    if(i >= quizQuestions.length){
-        timer.style.display = "none";
-        question.textContent = "Quiz Complete!";
-        choiceA.style.display = "none";
-        choiceB.style.display = "none";
-        choiceC.style.display = "none";
-        choiceD.style.display = "none";
+    if (finishCheck()){
         return;
     }
     printQuiz();
 });
-
-
-// if(i >= quizQuestions.length){
-//     choiceA.style.display = "none";
-//     choiceB.style.display = "none";
-//     choiceC.style.display = "none";
-//     choiceD.style.display = "none";
-// }
 
 startButton.addEventListener("click", function(event){
     event.preventDefault();
@@ -183,9 +196,3 @@ startButton.addEventListener("click", function(event){
     printQuiz();
     
 })
-
-// need  to localstorage the score and name of user
-
-//make the multiple choice answers buttons
-
-//need timer
