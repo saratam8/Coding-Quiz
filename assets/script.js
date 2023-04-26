@@ -6,7 +6,10 @@ var choiceD = document.getElementById("choiceD");
 var startButton = document.getElementById("start");
 var timer = document.querySelector(".time");
 var seconds = 60;
-var userChoice = [];
+var i = 0;
+
+var correctChoices = ["C", "A", "D", "B", "A"];
+var userAnswers = [];
 
 function startTimer(){
     var timerInterval = setInterval(function(){
@@ -15,6 +18,12 @@ function startTimer(){
 
         if(seconds === 0){
             clearInterval(timerInterval);
+            timer.style.display = "none";
+            question.textContent = "Time's Up!";
+            choiceA.style.display = "none";
+            choiceB.style.display = "none";
+            choiceC.style.display = "none";
+            choiceD.style.display = "none";
         }
 
     }, 1000);
@@ -64,10 +73,6 @@ let quizQuestions = [
     }
 ];
 
-var i = 0;
-
-var correctChoices = ["C", "A", "D", "B", "A"];
-
 function printQuiz(){
     choiceA.style.display = "block";
     choiceB.style.display = "block";
@@ -80,21 +85,23 @@ function printQuiz(){
     choiceD.textContent = quizQuestions[i].choiceD;
 }
 
-
 // console.log(quizQuestions[0]);
 // console.log(quizQuestions[i].question);
 // console.log(quizQuestions[i].choiceA);
 // console.log(quizQuestions[i].choiceB);
 // console.log(quizQuestions[i].choiceC);
 // console.log(quizQuestions[i].choiceD);
-
-var userAnswers = [];
     
 choiceA.addEventListener("click", function(event){
     userAnswers[i] = "A";
+    if(userAnswers[i] != correctChoices[i]){
+        seconds = seconds - 10;
+    }
     console.log(userAnswers);
     i++;
     if(i >= quizQuestions.length){
+        timer.style.display = "none";
+        question.textContent = "Quiz Complete!";
         choiceA.style.display = "none";
         choiceB.style.display = "none";
         choiceC.style.display = "none";
@@ -106,9 +113,14 @@ choiceA.addEventListener("click", function(event){
 
 choiceB.addEventListener("click", function(event){
     userAnswers[i] = "B";
+    if(userAnswers[i] != correctChoices[i]){
+        seconds = seconds - 10;
+    }
     console.log(userAnswers);
     i++;
     if(i >= quizQuestions.length){
+        timer.style.display = "none";
+        question.textContent = "Quiz Complete!";
         choiceA.style.display = "none";
         choiceB.style.display = "none";
         choiceC.style.display = "none";
@@ -120,9 +132,14 @@ choiceB.addEventListener("click", function(event){
 
 choiceC.addEventListener("click", function(event){
     userAnswers[i] = "C";
+    if(userAnswers[i] != correctChoices[i]){
+        seconds = seconds - 10;
+    }
     console.log(userAnswers);
     i++;
     if(i >= quizQuestions.length){
+        timer.style.display = "none";
+        question.textContent = "Quiz Complete!";
         choiceA.style.display = "none";
         choiceB.style.display = "none";
         choiceC.style.display = "none";
@@ -134,9 +151,14 @@ choiceC.addEventListener("click", function(event){
 
 choiceD.addEventListener("click", function(event){
     userAnswers[i] = "D";
+    if(userAnswers[i] != correctChoices[i]){
+        seconds = seconds - 10;
+    }
     console.log(userAnswers);
     i++;
     if(i >= quizQuestions.length){
+        timer.style.display = "none";
+        question.textContent = "Quiz Complete!";
         choiceA.style.display = "none";
         choiceB.style.display = "none";
         choiceC.style.display = "none";
