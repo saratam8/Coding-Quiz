@@ -66,55 +66,99 @@ let quizQuestions = [
 
 var i = 0;
 
+var correctChoices = ["C", "A", "D", "B", "A"];
 
-function startQuiz(){
+function printQuiz(){
     choiceA.style.display = "block";
     choiceB.style.display = "block";
     choiceC.style.display = "block";
     choiceD.style.display = "block";
+    question.textContent = quizQuestions[i].question;
+    choiceA.textContent = quizQuestions[i].choiceA;
+    choiceB.textContent = quizQuestions[i].choiceB;
+    choiceC.textContent = quizQuestions[i].choiceC;
+    choiceD.textContent = quizQuestions[i].choiceD;
+}
 
-    function printQuiz(){
-        question.textContent = quizQuestions[i].question;
-        choiceA.textContent = quizQuestions[i].choiceA;
-        choiceB.textContent = quizQuestions[i].choiceB;
-        choiceC.textContent = quizQuestions[i].choiceC;
-        choiceD.textContent = quizQuestions[i].choiceD;
-    }
 
-    printQuiz();
 // console.log(quizQuestions[0]);
 // console.log(quizQuestions[i].question);
 // console.log(quizQuestions[i].choiceA);
 // console.log(quizQuestions[i].choiceB);
 // console.log(quizQuestions[i].choiceC);
 // console.log(quizQuestions[i].choiceD);
+
+var userAnswers = [];
     
-    choiceA.addEventListener("click", function(event){
-        i++;
-        printQuiz();
-    });
+choiceA.addEventListener("click", function(event){
+    userAnswers[i] = "A";
+    console.log(userAnswers);
+    i++;
+    if(i >= quizQuestions.length){
+        choiceA.style.display = "none";
+        choiceB.style.display = "none";
+        choiceC.style.display = "none";
+        choiceD.style.display = "none";
+        return;
+    }
+    printQuiz();
+});
 
-    choiceB.addEventListener("click", function(event){
-        i++;
-        printQuiz();
-    });
+choiceB.addEventListener("click", function(event){
+    userAnswers[i] = "B";
+    console.log(userAnswers);
+    i++;
+    if(i >= quizQuestions.length){
+        choiceA.style.display = "none";
+        choiceB.style.display = "none";
+        choiceC.style.display = "none";
+        choiceD.style.display = "none";
+        return;
+    }
+    printQuiz();
+});
 
-    choiceC.addEventListener("click", function(event){
-        i++;
-        printQuiz();
-    });
+choiceC.addEventListener("click", function(event){
+    userAnswers[i] = "C";
+    console.log(userAnswers);
+    i++;
+    if(i >= quizQuestions.length){
+        choiceA.style.display = "none";
+        choiceB.style.display = "none";
+        choiceC.style.display = "none";
+        choiceD.style.display = "none";
+        return;
+    }
+    printQuiz();
+});
 
-    choiceD.addEventListener("click", function(event){
-        i++;
-        printQuiz();
-    });
-}
+choiceD.addEventListener("click", function(event){
+    userAnswers[i] = "D";
+    console.log(userAnswers);
+    i++;
+    if(i >= quizQuestions.length){
+        choiceA.style.display = "none";
+        choiceB.style.display = "none";
+        choiceC.style.display = "none";
+        choiceD.style.display = "none";
+        return;
+    }
+    printQuiz();
+});
+
+
+// if(i >= quizQuestions.length){
+//     choiceA.style.display = "none";
+//     choiceB.style.display = "none";
+//     choiceC.style.display = "none";
+//     choiceD.style.display = "none";
+// }
 
 startButton.addEventListener("click", function(event){
     event.preventDefault();
     startButton.style.display = "none";
     startTimer();
-    startQuiz();
+    printQuiz();
     
 })
 
