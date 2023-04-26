@@ -10,6 +10,7 @@ var quizEl = document.getElementById("quiz");
 // var correctAnswerEl = document.createTextNode("Correct Answer!");
 var correctEl = document.createElement("p");
 var timer = document.querySelector(".time");
+var initials = document.querySelector("#initials");
 var seconds = 60;
 var i = 0;
 
@@ -105,15 +106,7 @@ function finishCheck(){
     return false;
 }
 
-// console.log(quizQuestions[0]);
-// console.log(quizQuestions[i].question);
-// console.log(quizQuestions[i].choiceA);
-// console.log(quizQuestions[i].choiceB);
-// console.log(quizQuestions[i].choiceC);
-// console.log(quizQuestions[i].choiceD);
-    
-choiceA.addEventListener("click", function(event){
-    userAnswers[i] = "A";
+function answerCheck(){
     if(userAnswers[i] != correctChoices[i]){
         seconds = seconds - 10;
         correctEl.textContent = "Wrong Answer!";
@@ -124,6 +117,18 @@ choiceA.addEventListener("click", function(event){
         correctEl.textContent = "Correct Answer!";
         quizEl.appendChild(correctEl);
     }
+}
+
+// console.log(quizQuestions[0]);
+// console.log(quizQuestions[i].question);
+// console.log(quizQuestions[i].choiceA);
+// console.log(quizQuestions[i].choiceB);
+// console.log(quizQuestions[i].choiceC);
+// console.log(quizQuestions[i].choiceD);
+    
+choiceA.addEventListener("click", function(event){
+    userAnswers[i] = "A";
+    answerCheck();
     console.log(userAnswers);
     i++;
     if (finishCheck()){
@@ -134,15 +139,7 @@ choiceA.addEventListener("click", function(event){
 
 choiceB.addEventListener("click", function(event){
     userAnswers[i] = "B";
-    if(userAnswers[i] != correctChoices[i]){
-        seconds = seconds - 10;
-        correctEl.textContent = "Wrong Answer!";
-        quizEl.appendChild(correctEl);
-    }
-    else{
-        correctEl.textContent = "Correct Answer!";
-        quizEl.appendChild(correctEl);
-    }
+    answerCheck();
     console.log(userAnswers);
     i++;
     if (finishCheck()){
@@ -153,15 +150,7 @@ choiceB.addEventListener("click", function(event){
 
 choiceC.addEventListener("click", function(event){
     userAnswers[i] = "C";
-    if(userAnswers[i] != correctChoices[i]){
-        seconds = seconds - 10;
-        correctEl.textContent = "Wrong Answer!";
-        quizEl.appendChild(correctEl);
-    }
-    else{
-        correctEl.textContent = "Correct Answer!";
-        quizEl.appendChild(correctEl);
-    }
+    answerCheck();
     console.log(userAnswers);
     i++;
     if (finishCheck()){
@@ -172,15 +161,7 @@ choiceC.addEventListener("click", function(event){
 
 choiceD.addEventListener("click", function(event){
     userAnswers[i] = "D";
-    if(userAnswers[i] != correctChoices[i]){
-        seconds = seconds - 10;
-        correctEl.textContent = "Wrong Answer!";
-        quizEl.appendChild(correctEl);
-    }
-    else{
-        correctEl.textContent = "Correct Answer!";
-        quizEl.appendChild(correctEl);
-    }
+    answerCheck();
     console.log(userAnswers);
     i++;
     if (finishCheck()){
@@ -194,5 +175,4 @@ startButton.addEventListener("click", function(event){
     startButton.style.display = "none";
     startTimer();
     printQuiz();
-    
 })
