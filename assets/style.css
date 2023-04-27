@@ -7,3 +7,7 @@ section{
     align-items: center;
     flex-direction: column;
 }
+
+li{
+  list-style-type: none;  
+}
