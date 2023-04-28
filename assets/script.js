@@ -18,16 +18,18 @@ var quizCount = 0;
 var correctChoices = ["C", "A", "D", "B", "A"];
 var userAnswers = [];
 
+// Function to calculate user's score
 function calcScore(){
     var userScore = Math.floor((numCorrect / quizQuestions.length)*100);
     return userScore;
 }
 
+// Function to start timer and counts down per second. Timer will stop when time runs out or all quiz questions are answered
 function startTimer(){
     var timerInterval = setInterval(function(){
         seconds--;
         timer.textContent = "Seconds left: " + seconds;
-
+        // Checks if timer ran out or all quiz questions are answered
         if(seconds === 0 || i >= quizQuestions.length){
             clearInterval(timerInterval);
             timer.style.display = "none";
@@ -95,6 +97,7 @@ let quizQuestions = [
     }
 ];
 
+// Function to print each question and answer choices to the webpage
 function printQuiz(){
     choiceA.style.display = "block";
     choiceB.style.display = "block";
@@ -107,6 +110,7 @@ function printQuiz(){
     choiceD.textContent = quizQuestions[i].choiceD;
 }
 
+// Function to store user's answers into an array and compare to our correcChoices array
 function answerCheck(){
     if(userAnswers[i] != correctChoices[i]){
         seconds = seconds - 10;
@@ -120,7 +124,8 @@ function answerCheck(){
         quizEl.appendChild(correctEl);
     }
 }
-    
+
+// Event listener for if user chooses choice A
 choiceA.addEventListener("click", function(event){
     userAnswers[i] = "A";
     answerCheck();
@@ -132,6 +137,7 @@ choiceA.addEventListener("click", function(event){
     printQuiz();
 });
 
+// Event listener for if user chooses choice B
 choiceB.addEventListener("click", function(event){
     userAnswers[i] = "B";
     answerCheck();
@@ -143,6 +149,7 @@ choiceB.addEventListener("click", function(event){
     printQuiz();
 });
 
+// Event listener for if user chooses choice C
 choiceC.addEventListener("click", function(event){
     userAnswers[i] = "C";
     answerCheck();
@@ -154,6 +161,7 @@ choiceC.addEventListener("click", function(event){
     printQuiz();
 });
 
+// Event listener for if user chooses choice D
 choiceD.addEventListener("click", function(event){
     userAnswers[i] = "D";
     answerCheck();
@@ -165,6 +173,7 @@ choiceD.addEventListener("click", function(event){
     printQuiz();
 });
 
+// Event listener for when user clicks the Start button. Quiz and timer will start after Start button is clicked
 startButton.addEventListener("click", function(event){
     event.preventDefault();
     startButton.style.display = "none";
@@ -172,6 +181,7 @@ startButton.addEventListener("click", function(event){
     printQuiz();
 })
 
+// Event listener for when user clicks the Submit button to submit their initials
 initialSubmit.addEventListener("click", function(event){
     event.preventDefault();
     var initials = document.getElementById("initials");
@@ -180,7 +190,7 @@ initialSubmit.addEventListener("click", function(event){
     console.log(score);
     
     var check = localStorage.getItem("quizCount", quizCount);
-
+    
     if (check == null){
         quizCount++;
         localStorage.setItem("quizCount", quizCount);
@@ -197,6 +207,7 @@ initialSubmit.addEventListener("click", function(event){
         var saveScore = `${initials.value} Quiz Score: ${score}%`;
         var temp = lastScore + "," + saveScore;
         localStorage.setItem("quizScore", temp);
+        // Lists out all previous scores as well as the new score
         for(i = 0; i < check; i++){
             var scores = temp.split(',');
             var scoreList = document.createElement("li");
